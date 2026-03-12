@@ -1,2 +1,2 @@
-# pawchella-event
-pawchella event website — KHG
+# PAWCHELLA — The Dog Festival
+A Kollective Hospitality Group Event · pawchella-event.vercel.app
