@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pawchella — A HUGLIFE Experience",
-  description: "The festival for pet culture.",
+  description: "The festival for pet culture. Good boys meet good vibes.",
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
