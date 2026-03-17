@@ -30,5 +30,45 @@ function Tickets(){return(<section id="tickets" style={{background:C.surface,pad
 </div></div></Reveal>)}
 <div style={{marginTop:"28px",display:"flex",gap:"32px",justifyContent:"center",flexWrap:"wrap"}}>{["Powered by Eventbrite","Secure Checkout","All Ages Welcome","Pet-Friendly Event"].map(s=><div key={s} style={{fontFamily:F.mono,fontSize:"9px",color:"rgba(255,255,255,0.2)",letterSpacing:"0.2em"}}>{s}</div>)}</div>
 </div><style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}`}</style></section>);}
+
+function FAQ(){
+  const[open,setOpen]=useState<number|null>(null);
+  const items=[
+    {q:"What is Pawchella?",a:"Pawchella is Atlanta's premier pet-friendly festival — live entertainment, gourmet pet vendors, adoption partners, and a vibe for pets and their people."},
+    {q:"Can I bring my pet?",a:"Yes! Pawchella is designed for pets. Dogs welcome on leash. Please ensure your pet is up to date on vaccinations."},
+    {q:"Is this a family-friendly event?",a:"Absolutely. Pawchella is all-ages and family-friendly — bring the kids, the dogs, and the whole crew."},
+    {q:"What should I bring?",a:"Your pet, a leash, water bowl, and good energy. Vendors on-site will have food and treats for both you and your animal."},
+    {q:"Are tickets required?",a:"Yes. General admission tickets are available on Eventbrite. Purchase early — Pawchella regularly sells out."},
+    {q:"Can I be a vendor?",a:"Yes! Apply via thekollectiveworldwide@gmail.com with subject 'Pawchella Vendor'. We prioritize pet-focused and family brands."}
+  ];
+  return(
+<section id="faq" style={{background:C.base,padding:"80px clamp(32px,5vw,80px)",position:"relative",overflow:"hidden"}}>
+<Grain/>
+<div style={{maxWidth:"900px",margin:"0 auto",position:"relative",zIndex:1}}>
+<Reveal>
+<div style={{fontFamily:F.sans,fontSize:"9px",letterSpacing:"0.5em",textTransform:"uppercase",color:C.lime,marginBottom:"16px"}}>Frequently Asked</div>
+<h2 style={{fontFamily:F.sans,fontSize:"clamp(32px,5vw,64px)",fontWeight:400,fontStyle:"italic",color:C.cream,marginBottom:"48px",lineHeight:0.95}}>Common Questions</h2>
+</Reveal>
+<div style={{display:"flex",flexDirection:"column",gap:"2px",background:`${C.lime}20`}}>
+{items.map((item,i)=>(
+<Reveal key={i} d={i*0.05}>
+<div onClick={()=>setOpen(open===i?null:i)}
+style={{background:open===i?C.panel:C.surface,padding:"24px 28px",cursor:"pointer",
+borderLeft:`3px solid ${open===i?C.lime:"transparent"}`,transition:"all 0.3s"}}
+onMouseEnter={e=>{if(open!==i)(e.currentTarget as HTMLDivElement).style.background=`${C.lime}08`}}
+onMouseLeave={e=>{if(open!==i)(e.currentTarget as HTMLDivElement).style.background=C.surface}}
+>
+<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:"16px"}}>
+<div style={{fontFamily:F.sans,fontSize:"clamp(14px,1.5vw,18px)",fontStyle:"italic",color:C.cream,lineHeight:1.3}}>{item.q}</div>
+<div style={{color:C.lime,fontSize:"20px",flexShrink:0,transition:"transform 0.3s",transform:open===i?"rotate(45deg)":"rotate(0deg)"}}>+</div>
+</div>
+{open===i&&<div style={{fontFamily:F.sans,fontSize:"14px",color:C.muted,lineHeight:1.75,marginTop:"12px",paddingRight:"32px"}}>{item.a}</div>}
+</div>
+</Reveal>
+))}</div>
+</div>
+</section>
+);}
+
 function Footer(){return(<footer style={{background:"#0A1210",borderTop:`1px solid ${C.border}`,padding:"48px clamp(32px,5vw,80px) 32px"}}><div style={{maxWidth:"1400px",margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"24px"}}><div><div style={{fontFamily:F.display,fontSize:"22px",fontStyle:"italic",color:C.cream,marginBottom:"4px"}}>Pawchella</div><div style={{fontFamily:F.mono,fontSize:"9px",letterSpacing:"0.3em",color:C.lime}}>A KHG HUGLIFE EVENT</div></div><div style={{fontFamily:F.mono,fontSize:"10px",color:"rgba(255,255,255,0.18)"}}>© 2026 Pawchella. A KHG Enterprise.</div></div></footer>);}
-export default function PawchellaSite(){return(<div style={{background:C.base}}><Nav/><Hero/><Tickets/><Footer/></div>);}
+export default function PawchellaSite(){return(<div style={{background:C.base}}><Nav/><Hero/><Tickets/><FAQ/><Footer/></div>);}
